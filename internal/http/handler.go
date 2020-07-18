@@ -10,6 +10,7 @@ import (
 )
 
 var _ http.Handler = (*createHandler)(nil)
+var _ http.Handler = (*listHandler)(nil)
 
 type createHandler struct {
 	db db.DB
@@ -31,4 +32,22 @@ func (h *createHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+}
+
+type listHandler struct {
+	db db.DB
+}
+
+func (h *listHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	todos, err := h.db.GetAllTODOs(r.Context())
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	if err := json.NewEncoder(w).Encode(&todos); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+
 }
