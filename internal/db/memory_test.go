@@ -12,7 +12,7 @@ func TestMemoryDB_PutTODO(t *testing.T) {
 	t.Parallel()
 
 	todo1 := &todo.TODO{
-		ID:   "5B6829B1-4536-4EAF-88D7-B87CF419B948",
+		ID:    "5B6829B1-4536-4EAF-88D7-B87CF419B948",
 		Title: "brush the gopher",
 	}
 
@@ -21,7 +21,7 @@ func TestMemoryDB_PutTODO(t *testing.T) {
 		expected map[string]*todo.TODO
 	}{
 		"put": {
-			todo: todo1,
+			todo:     todo1,
 			expected: map[string]*todo.TODO{todo1.ID: todo1},
 		},
 	}

@@ -11,12 +11,12 @@ type Server struct {
 	server *http.Server
 }
 
-func NewServer(port int, d db.DB)  *Server {
+func NewServer(port int, d db.DB) *Server {
 	mux := http.NewServeMux()
 	return &Server{
 		server: &http.Server{
-			Addr:              fmt.Sprintf(":%d", port),
-			Handler:           mux,
+			Addr:    fmt.Sprintf(":%d", port),
+			Handler: mux,
 		},
 	}
 }

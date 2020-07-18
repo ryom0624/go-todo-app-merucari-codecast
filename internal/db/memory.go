@@ -9,7 +9,7 @@ import (
 var _ DB = (*memoryDB)(nil)
 
 type memoryDB struct {
-	db map[string]*todo.TODO
+	db   map[string]*todo.TODO
 	lock sync.RWMutex
 }
 
